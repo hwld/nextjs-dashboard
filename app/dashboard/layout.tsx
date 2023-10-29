@@ -1,19 +1,10 @@
 import SideNav from "@/app/ui/dashboard/sidenav";
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
 
 export default async function Layout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // https://github.com/nextauthjs/next-auth/issues/8978#issuecomment-1783546983
-  // ミドルウェアが動かないので、ここでリダイレクトさせる
-  const session = await auth();
-  if (!session) {
-    redirect("/login");
-  }
-
   return (
     <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
       <div className="w-full flex-none md:w-64">
